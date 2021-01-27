@@ -80,12 +80,13 @@ def course_choice2(df, uni_courses, course1):
         confirm_course(df, uni_courses,course1, course2)
 
 def confirm_course(df, uni_courses, course1, course2):
-    if input() == "y":
+    decision = input()
+    if decision == "y":
         if course2 == None:
             course_choice2(df, uni_courses, course1)
         else:
             compare(df, course1, course2)
-    elif input() == "n":
+    elif decision == "n":
         if course2 == None:
             course_choice1(df)
         else: 
@@ -107,7 +108,7 @@ def compare(df, course1, course2):
     second_course = np.where(df['omschrijving']== course2, df["naam"], "None")
 
     second_course = second_course[second_course != "None"]
-    print("\nstudents of", course1, ":", first_course)
+    print("\nstudents of", course2, ":", first_course)
 
     comp = np.in1d(first_course,second_course)
     overlaps = np.where(comp == True)
