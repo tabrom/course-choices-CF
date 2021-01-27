@@ -13,9 +13,20 @@ def browsefunc():
     return filename
 
 def start():
-    print("Hi! \nChoose a file.\nBe aware that it has to be a csv file organized . In case it is not yet go to Excel or similar application and select \"save as\" and then csv.\nAdditionally, your table should contain a column with all the courses and another one with the student names so that each student appears as many times as they take courses (one time for each course). ")
+    print("Hi! \nChoose a file.\nBe aware that it has to be a csv file organized . In case it is not yet go to Excel or similar application and select \"save as\" and then csv.\nAdditionally, your table should contain a column with all the courses and another one with the student names so that each student appears as many times as they take courses (one time for each course).\nAll choices must be confirmed by pressing enter.")
     choices = browsefunc()
-    separator(choices)
+    if choices:
+        separator(choices)
+    else: 
+        print("\nOops, something went wrong.\nDo you want to try again? Press \"y\" for yes or \"n\" to exit.")
+        decision = input()
+        if decision == "y":
+            start()
+        elif decision == "n":
+            exit()
+        else:
+            print("\nOops, something went wrong again.")
+            start()
 
 def check_col_names(df):
     relev_col = ("naam", "omschrijving")
