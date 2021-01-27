@@ -32,7 +32,8 @@ Also, tkinter should be installed after installing python3. If that is not the c
 
 *Let's go!* 
 
-Finally, you can download the file "course.choices.py". In your terminal go to the folder (easy to google if you do not know how to) where you have saved it and type "python3 course.choices.py" or "py course.choices.py".
-Alternatively, you can also click on the file and it starts the prgram or you click on "open with" and choose python3. 
+Finally, you can download the file repository with the green button "code". After downloading the zip folder you have to extract it. 
+In your terminal go to the folder (easy to google if you do not know how to) where you have saved it and type "python3 course.choices.py" or "py course.choices.py".
+Alternatively, you can also click on the file and it starts the program or you click on "open with" and choose python3. 
 
 No errors should occur (fingers crossed). 
