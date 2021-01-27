@@ -122,9 +122,10 @@ def compare(df, course1, course2):
 
 def final(df):
     print("\nWhat do you want to do next? Press 1 for another comparison or 2 for exit.")
-    if input() == "1":
+    decision = input()
+    if decision == "1":
         course_choice1(df)
-    elif input() == "2":
+    elif decision == "2":
         exit 
     else: 
         print("\nOops, something went wrong. Try again.")
