@@ -108,11 +108,12 @@ def compare(df, course1, course2):
     second_course = np.where(df['omschrijving']== course2, df["naam"], "None")
 
     second_course = second_course[second_course != "None"]
-    print("\nstudents of", course2, ":", first_course)
+    print("\nstudents of", course2, ":", second_course)
 
     comp = np.in1d(first_course,second_course)
     overlaps = np.where(comp == True)
 
+    print("\nStudents taking both courses:")
     for i in overlaps[0]: 
         print(first_course[i])
 
