@@ -89,9 +89,9 @@ def confirm_course(df, uni_courses, course1, course2):
     else: 
         print("\nOops, something went wrong. Try again.")
         if course2 == None:
-            course_choice1
+            course_choice1(df)
         else: 
-            course_choice2
+            course_choice2(df, uni_courses, course1)
         
 
 def compare(df, course1, course2):
