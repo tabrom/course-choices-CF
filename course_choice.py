@@ -33,8 +33,7 @@ def check_col_names(df):
     for c in df.columns: 
         cLow = c.lower()
         if cLow in relev_col:
-            newColname = c.lower()
-            df.rename(columns = {c : newColname}, inplace = True) 
+            df.rename(columns = {c : cLow}, inplace = True) 
 
     if 'naam' and 'omschrijving' in df.columns:
         return df 
@@ -54,29 +53,25 @@ def course_choice1(df):
     print("\nNow you choose the first course you want to check. Press any key apart from enter and then enter to see a list of all courses.") 
     if input(): 
         uni_courses = np.unique(df['omschrijving'])
-        counter = 1
-        for i in uni_courses: 
-            print(counter, ": ", i)
-            counter += 1
+        for i, c in enumerate(uni_courses): 
+            print(f"{i+1}: {c}")
         print("\nEnter the number corresponding with the first course you want to check.")
         choice = input()
         choice = int(choice) - 1
         course1 = uni_courses[choice]
-        print("\nYour first course is:", course1,"\nIs that correct? Enter y for yes and n for no.")
+        print(f"\nYour first course is: {course1} \nIs that correct? Enter y for yes and n for no.")
         confirm_course(df, uni_courses, course1, course2=None)
 
 def course_choice2(df, uni_courses, course1): 
     print("\nNow you choose the second course you want to check. Press any key apart from enter and then enter to see a list of all courses.") 
     if input(): 
-        counter = 1
-        for i in uni_courses: 
-            print(counter, ": ", i)
-            counter += 1
+        for i, c in enumerate(uni_courses): 
+            print(f"{i+1}: {c}")
         print("\nEnter the number corresponding with the second course you want to check.")
         choice = input()
         choice = int(choice) - 1
         course2 = uni_courses[choice]
-        print("\nYour second course is:", course2,"\nIs that correct? Enter y for yes and n for no.")
+        print(f"\nYour second course is: {course2} \nIs that correct? Enter y for yes and n for no.")
         confirm_course(df, uni_courses,course1, course2)
 
 def confirm_course(df, uni_courses, course1, course2):
@@ -100,26 +95,25 @@ def confirm_course(df, uni_courses, course1, course2):
         
 
 def compare(df, course1, course2):
-    first_course = np.where(df['omschrijving']== course1, df["naam"], "None")
+    studentsList1 = np.where(df['omschrijving']== course1, df["naam"], "None")
 
-    first_course = first_course[first_course != "None"]
-    print("\nstudents of", course1, ":", first_course)
+    studentsList1 = studentsList1[studentsList1 != "None"]
+    print(f"\nstudents of {course1}: {studentsList1}")
 
-    second_course = np.where(df['omschrijving']== course2, df["naam"], "None")
+    studentsList2 = np.where(df['omschrijving']== course2, df["naam"], "None")
 
-    second_course = second_course[second_course != "None"]
-    print("\nstudents of", course2, ":", second_course)
+    studentsList2 = studentsList2[studentsList2 != "None"]
+    print(f"\nstudents of {course2}: {studentsList2}")
 
-    comp = np.in1d(first_course,second_course)
+    comp = np.in1d(studentsList1,studentsList2)
     overlaps = np.where(comp == True)
 
     print("\nStudents taking both courses:")
     for i in overlaps[0]: 
-        print(first_course[i])
+        print(studentsList1[i])
 
     unique, counts = np.unique(comp, return_counts=True)
-    print("\noverlap?")
-    print((dict(zip(unique, counts))))
+    print(f"\noverlap? \n{dict(zip(unique, counts))}")
     final(df) 
 
 def final(df):
